@@ -1,0 +1,74 @@
+/* style.css */
+
+body {
+    font-family: "Fredoka", sans-serif;
+    background: linear-gradient(to bottom right, #8b5cf6, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #1d4ed8;
+  }
+  
+  .board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 16px;
+    background-color: #ffffff;
+    border-radius: 24px;
+    border: 4px solid rgb(150, 126, 236);
+  }
+  
+  .board-row {
+    display: flex;
+    gap: 6px;
+  }
+  
+  .cell-wrapper {
+    cursor: pointer;
+  }
+  
+  .cell {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #beccf3;
+    background-color: #e4d2ee;
+    transition: transform 0.1s ease;
+  }
+  
+  .cell:hover {
+    transform: scale(1.1);
+  }
+  
+  .cell.player-1 {
+    background-color: #ee9797; /* red */
+  }
+  
+  .cell.player-2 {
+    background-color: #f3da74; /* yellow */
+  }
+  
+  .winner-msg {
+    font-size: 1.4rem;
+    margin-top: 1.2rem;
+    color: #16a34a;
+    font-weight: bold;
+  }
+  
