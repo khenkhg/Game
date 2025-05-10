@@ -25,12 +25,10 @@ export default function App() {
     intervalRef.current = setInterval(() => {
       setTimer(prev => {
         if (prev === 1) {
-            clearInterval(intervalRef.current);
-            setIsPlayerTurn(false); // Forfeit player turn
-            setTimeout(() => {
-              handleAIMove(); // Let AI play after a short delay
-            }, 2000);
-          }
+          clearInterval(intervalRef.current);
+          setWinner(2); // AI wins due to timeout
+        }
+
 
         return prev - 1;
       });
