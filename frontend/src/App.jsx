@@ -14,6 +14,7 @@ export default function App() {
   const [notification, setNotification] = useState('');
   const [isPlayerTurn, setIsPlayerTurn] = useState(true); // Initially, it's the player's turn
   const [draw, setDraw] = useState(false);
+  const [timeoutLoss, setTimeoutLoss] = useState(false);
 
   const resetTimer = () => {
     clearInterval(intervalRef.current);
@@ -26,10 +27,9 @@ export default function App() {
       setTimer(prev => {
         if (prev === 1) {
           clearInterval(intervalRef.current);
-          setWinner(2); // AI wins due to timeout
+          setTimeoutLoss(true);  // 👈 track that player lost due to timeout
+          setWinner(2);          // AI wins
         }
-
-
         return prev - 1;
       });
     }, 1000);
@@ -153,17 +153,20 @@ export default function App() {
           }}
         />
       )}
-
       {winner !== 0 && (
         <WinnerModal
           winner={winner}
+          message={timeoutLoss ? "⏰ Time's up! AI wins by timeout." : undefined}
           onStartOver={() => {
-            clearInterval(intervalRef.current); // Stop the timer
-            setWinner(0);                       // Clear the winner
-            setShowGame(false);                 // Go back to welcome
+            clearInterval(intervalRef.current);
+            setWinner(0);
+            setTimeoutLoss(false);  // Reset the flag
+            setShowGame(false);
           }}
         />
       )}
+
+      
     </div>
   );
   
