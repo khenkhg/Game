@@ -141,25 +141,30 @@ export default function App() {
         lastMove={lastMove}
         disabled={!isPlayerTurn} // Disable clicks if it's not the player's turn
       />
-      {(winner !== 0 || draw) && (
-  <WinnerModal
-    winner={winner}
-    message={
-      draw
-        ? "It's a Draw!"
-        : timeoutLoss
-        ? "⏰ Time's up! AI wins by timeout."
-        : undefined
-    }
-    onStartOver={() => {
-      clearInterval(intervalRef.current);
-      setWinner(0);
-      setDraw(false);
-      setTimeoutLoss(false);
-      setShowGame(false);
-    }}
-  />
-)}
+      {draw && (
+        <WinnerModal
+          winner={0} // No winner
+          message="It's a Draw!"
+          onStartOver={() => {
+            clearInterval(intervalRef.current);
+            setWinner(0);
+            setDraw(false);
+            setShowGame(false);
+          }}
+        />
+      )}
+      {winner !== 0 && (
+        <WinnerModal
+          winner={winner}
+          message={timeoutLoss ? "⏰ Time's up! AI wins by timeout." : undefined}
+          onStartOver={() => {
+            clearInterval(intervalRef.current);
+            setWinner(0);
+            setTimeoutLoss(false);  // Reset the flag
+            setShowGame(false);
+          }}
+        />
+      )}
 
 
       
