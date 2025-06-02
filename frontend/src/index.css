@@ -256,3 +256,9 @@ h1 .o {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.timeout-message {
+  margin: 10px 0;
+  color: #e63946;
+  font-weight: bold;
+}
