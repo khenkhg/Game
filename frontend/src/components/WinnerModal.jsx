@@ -1,7 +1,7 @@
 // components/WinnerModal.jsx
 import { motion } from "framer-motion";
 
-export default function WinnerModal({ winner, onStartOver }) {
+export default function WinnerModal({ winner, message, onStartOver }) {
   return (
     <div className="modal-overlay">
       <motion.div
@@ -11,6 +11,7 @@ export default function WinnerModal({ winner, onStartOver }) {
         transition={{ type: "spring", stiffness: 200 }}
       >
         <h2>🎉 Player {winner} Wins! 🎉</h2>
+        {message && <p className="timeout-message">{message}</p>}
         <button onClick={onStartOver} className="start-over-btn">
           Start Over
         </button>
